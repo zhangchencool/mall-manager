@@ -10,11 +10,13 @@
     "unit": "jest --config test/unit/jest.conf.js --coverage",
     "test": "npm run unit",
     "lint": "eslint --ext .js,.vue src test/unit",
-    "lintfix": "eslint --ext .js,.vue src --fix",
+    "fix": "eslint --ext .js,.vue src --fix",
     "build": "node build/build.js"
   },
   "dependencies": {
+    "axios": "^0.20.0",
     "element-ui": "^2.13.2",
+    "node-sass": "^4.14.1",
     "vue": "^2.5.2",
     "vue-router": "^3.0.1"
   },
@@ -58,8 +60,10 @@
     "postcss-loader": "^2.0.8",
     "postcss-url": "^7.2.1",
     "rimraf": "^2.6.0",
+    "sass-loader": "^7.3.1",
     "semver": "^5.3.0",
     "shelljs": "^0.7.6",
+    "style-loader": "^2.0.0",
     "uglifyjs-webpack-plugin": "^1.1.1",
     "url-loader": "^0.5.8",
     "vue-jest": "^1.0.2",
