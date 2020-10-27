@@ -28,12 +28,12 @@ export default {
     myheader,
     myaside
   },
-  beforeCreate() {
+  beforeCreate () {
     const token = localStorage.getItem('token')
     if (!token) {
       this.$router.push('login')
     }
-  },
+  }
 }
 </script>
 

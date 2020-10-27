@@ -16,10 +16,10 @@ export default new Router({
     },
     {
       path: '/',
-      name: 'home',
+      name: '首页',
       component: Home,
       children: [
-        {path: 'users', name: '1-1', component: Users}
+        {path: 'users', name: '选项1', component: Users}
       ]
     }
   ]

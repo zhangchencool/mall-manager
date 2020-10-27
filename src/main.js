@@ -5,6 +5,7 @@ import App from './App'
 import router from './router'
 import ElementUI from 'element-ui'
 import Axios from '@/plugin/axios.js'
+import breadcrumb from '@/plugin/breadcrumb.js'
 import 'element-ui/lib/theme-chalk/index.css'
 import '@/assets/css/reset.scss'
 
@@ -12,6 +13,7 @@ Vue.config.productionTip = false
 
 Vue.use(ElementUI)
 Vue.use(Axios)
+Vue.use(breadcrumb)
 
 /* eslint-disable no-new */
 new Vue({
