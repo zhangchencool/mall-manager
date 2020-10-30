@@ -8,13 +8,19 @@ import Axios from '@/plugin/axios.js'
 import breadcrumb from '@/plugin/breadcrumb.js'
 import 'element-ui/lib/theme-chalk/index.css'
 import '@/assets/css/reset.scss'
+import moment from 'moment'
 
 Vue.config.productionTip = false
 
 Vue.use(ElementUI)
 Vue.use(Axios)
 Vue.use(breadcrumb)
+Vue.use(moment)
 
+// 注册全局过滤器处理时间格式
+Vue.filter('format', (v) => {
+  return moment(v).format('YYYY-MM-DD')
+})
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

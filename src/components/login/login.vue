@@ -31,9 +31,7 @@ export default {
   methods: {
     handleLogin () {
       this.$axios.post('login', this.formData).then((res) => {
-        console.log(res.data)
         const {data, meta} = res.data
-        console.log(data, meta)
         if (meta.status === 200) {
           this.$message({
             message: meta.msg,
