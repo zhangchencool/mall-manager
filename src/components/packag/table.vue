@@ -64,30 +64,30 @@ export default {
             field: 'skuId'
           },
           {
-            label: '商品名称',
+            label: 'label1',
             field: 'skuName'
           },
           {
-            label: '缩略图',
+            label: 'label2',
             columnType: 'slot',
             slotName: 'thumbnail'
           },
           {
-            label: '库存数量',
+            label: 'label3',
             field: 'onStockNum'
           },
           {
-            label: '码类型',
+            label: 'label4',
             field: 'hasUniCode'
           },
           {
-            label: '状态',
+            label: 'label5',
             field: 'status',
             columnType: 'slot',
             slotName: 'status'
           },
           {
-            label: '操作',
+            label: 'label6',
             columnType: 'slot',
             slotName: 'operation'
           }
