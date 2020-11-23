@@ -1,17 +1,14 @@
 <template>
-    <el-menu
-    class="el-menu-vertical-demo"
-    @open="handleOpen"
-    router= "true"
-    @close="handleClose">
-    <el-submenu :index="item.order" v-for="item in menusData" :key="item.order">
-      <template slot="title">
-        <i class="el-icon-location"></i>
-        <span>{{item.authName}}</span>
-      </template>
-      <el-menu-item-group>
-        <el-menu-item  :index="item1.path" v-for="(item1, index) in item.children" :key="index">{{item1.authName}}</el-menu-item>
-      </el-menu-item-group>
+  <el-menu
+  class="el-menu-demo"
+  active-text-color="#ffd04b"
+  unique-opened= "true"
+  router
+  ref="kzMenu"
+  >
+    <el-submenu :index="item.order" v-for="(item, index) in menusData" :key="index">
+      <template slot="title">{{item.authName}}</template>
+      <el-menu-item :index="items.path" v-for="(items, index) in item.children" :key="index">{{items.authName}}</el-menu-item>
     </el-submenu>
   </el-menu>
 </template>
@@ -20,7 +17,8 @@
 export default {
   data () {
     return {
-      menusData: []
+      menusData: [],
+      color: '#ffd04b'
     }
   },
   created () {
@@ -31,19 +29,29 @@ export default {
   },
   methods: {
     getMenusroles () {
-      debugger
       this.$axios
         .get('menus')
         .then((res) => {
           const {data, meta} = res.data
           if (meta.status === 200) {
-            debugger
             this.menusData = data
           }
         })
         .finally(() => {
           this.loading = false
         })
+    },
+    handleOpen () {
+
+    },
+    handleClose () {
+
+    }
+  },
+  watch: {
+    $route (route) {
+      let paths = this.$route.path
+      this.$refs.kzMenu.activedIndex = path
     }
   }
 }

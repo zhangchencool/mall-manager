@@ -17,12 +17,13 @@ const router = new Router({
 
     },
     {
-      path: '/',
+      path: '/home',
       name: '首页',
       component: Home,
+      redirect: '/users',
       children: [
         {path: 'users', name: '用户管理', component: Users},
-        {path: 'right', name: '权限配置', component: Right},
+        {path: 'roles', name: '角色列表', component: Right},
         {path: 'permission', name: '角色配置', component: Permission}
       ]
     }

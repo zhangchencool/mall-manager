@@ -5,31 +5,56 @@
       label-position="top"
       label-width="80px"
       :model="formData"
+      :rules="rules"
+      ref="loginForm"
     >
     <h2>用户登录</h2>
-      <el-form-item label="名称">
+      <el-form-item label="用户名" prop= "username">
         <el-input v-model="formData.username"></el-input>
       </el-form-item>
-      <el-form-item label="活动区域">
+      <el-form-item label="密码" prop= "password">
         <el-input v-model="formData.password"></el-input>
       </el-form-item>
-      <el-button @click=handleLogin type="primary" class="login-btn">登录</el-button>
+      <el-button @click="handleSumit()" type="primary" class="login-btn">登 录</el-button>
+      <Vcode :show="isShow" @success="success" @close="close" />
     </el-form>
   </div>
 </template>
 
 <script>
+import Vcode from 'vue-puzzle-vcode'
 export default {
   data () {
     return {
       formData: {
-        username: '',
-        password: ''
+        username: 'admin',
+        password: '123456'
+      },
+      isShow: true,
+      rules: {
+        username: [
+          { required: true, message: '请输入用户名', trigger: 'blur'},
+          { min: 5, max: 8, message: '长度在 5 到 8 个字符', trigger: 'blur' }
+        ],
+        password: [
+          { required: true, message: '请输入密码', trigger: 'blur'},
+          { min: 5, max: 8, message: '长度在 5 到 8 个字符', trigger: 'blur' }
+        ]
       }
+
     }
   },
   methods: {
-    handleLogin () {
+    handleSumit () {
+      this.$refs.loginForm.validate((valid) => {
+        if (valid) {
+          this.isShow = true
+        } else {
+
+        }
+      })
+    },
+    success () {
       this.$axios.post('login', this.formData).then((res) => {
         const {data, meta} = res.data
         if (meta.status === 200) {
@@ -37,12 +62,16 @@ export default {
             message: meta.msg,
             type: 'success'
           })
-          this.$router.push('/')
           localStorage.setItem('token', data.token)
+          this.$store.commit('setUserInfo', res.data)
+          this.$router.push('/home')
         } else {
           this.$message.error(meta.msg)
         }
       })
+    },
+    close () {
+
     }
   },
   components: {}

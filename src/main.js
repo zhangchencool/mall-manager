@@ -9,6 +9,7 @@ import breadcrumb from '@/plugin/breadcrumb.js'
 import 'element-ui/lib/theme-chalk/index.css'
 import '@/assets/css/reset.scss'
 import moment from 'moment'
+import store from './store'
 
 Vue.config.productionTip = false
 
@@ -22,9 +23,12 @@ Vue.filter('format', (v) => {
   return moment(v).format('YYYY-MM-DD')
 })
 /* eslint-disable no-new */
+// vue 开发环境提示语句
+Vue.config.productionTip = true
 new Vue({
   el: '#app',
   router,
+  store,
   components: { App },
   template: '<App/>'
 })
