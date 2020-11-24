@@ -30,7 +30,7 @@ export default {
         username: 'admin',
         password: '123456'
       },
-      isShow: true,
+      isShow: false,
       rules: {
         username: [
           { required: true, message: '请输入用户名', trigger: 'blur'},
@@ -50,11 +50,12 @@ export default {
         if (valid) {
           this.isShow = true
         } else {
-
+          return
         }
       })
     },
     success () {
+      debugger
       this.$axios.post('login', this.formData).then((res) => {
         const {data, meta} = res.data
         if (meta.status === 200) {
@@ -71,10 +72,12 @@ export default {
       })
     },
     close () {
-
+      this.isShow = false
     }
   },
-  components: {}
+  components: {
+    Vcode
+  }
 }
 </script>
 
