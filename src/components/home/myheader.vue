@@ -1,10 +1,8 @@
 <template>
     <el-row>
         <el-col :span="4"><div class="grid-content bg-purple">
-            <h3>LOGO</h3>
         </div></el-col>
         <el-col :span="14"><div class="grid-content bg-purple-light middle">
-            <h3>name</h3>
         </div></el-col>
         <el-col :span="6"><div class="grid-content bg-purple height-middle">
             <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect"

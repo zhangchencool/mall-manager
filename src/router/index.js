@@ -2,16 +2,23 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Login from '@/components/login/login.vue'
 import Home from '@/components/home/home.vue'
-import Users from '@/components/users/users.vue'
+// import Users from '@/components/users/users.vue'
 import Right from '@/components/right/right.vue'
 import Permission from '@/components/permission/permission.vue'
+import Welcome from '@/components/systemManager/welcome/welcome.vue'
+import managementFlies from '@/components/systemManager/managementFlies/managementFlies.vue'
+import userManager from '@/components/systemManager/userManager/userManager.vue'
+import menuManager from '@/components/systemManager/menuManager/menuManager.vue'
+import manangerRole from '@/components/systemManager/manangerRole/manangerRole.vue'
+import managerMsg from '@/components/systemManager/managerMsg/managerMsg.vue'
+import managerDepartment from '@/components/systemManager/managerDepartment/managerDepartment.vue'
 
 Vue.use(Router)
 
 const router = new Router({
   routes: [
     {
-      path: '/login',
+      path: '/',
       name: 'login',
       component: Login
 
@@ -20,11 +27,17 @@ const router = new Router({
       path: '/home',
       name: '首页',
       component: Home,
-      redirect: '/users',
+      redirect: '/welcome',
       children: [
-        {path: 'users', name: '用户管理', component: Users},
-        {path: 'roles', name: '角色列表', component: Right},
-        {path: 'permission', name: '角色配置', component: Permission}
+        {path: '/welcome', name: '系统首页', component: Welcome},
+        {path: '/attachments', name: '附件管理', component: managementFlies},
+        {path: '/users', name: '用户管理', component: userManager},
+        {path: '/menus', name: '菜单权限', component: menuManager},
+        {path: '/departments', name: '部门管理', component: managerDepartment},
+        {path: '/roles', name: '角色管理', component: manangerRole},
+        {path: '/notices', name: '公告管理', component: managerMsg},
+        {path: '/roles', name: '角色列表', component: Right},
+        {path: '/permission', name: '角色配置', component: Permission}
       ]
     }
   ]

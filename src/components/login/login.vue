@@ -41,7 +41,6 @@ export default {
           { min: 5, max: 8, message: '长度在 5 到 8 个字符', trigger: 'blur' }
         ]
       }
-
     }
   },
   methods: {
@@ -55,15 +54,17 @@ export default {
       })
     },
     success () {
-      debugger
-      this.$axios.post('login', this.formData).then((res) => {
-        const {data, meta} = res.data
-        if (meta.status === 200) {
+      this.$axios.post('user/login?username='+this.formData.username+'&'+"password="+this.formData.password
+      
+      ).then((res) => {
+        const {data, code, msg} = res.data
+        if (code === 200) {
           this.$message({
-            message: meta.msg,
+            message: msg,
             type: 'success'
           })
-          localStorage.setItem('token', data.token)
+          debugger
+          localStorage.setItem('token', data)
           this.$store.commit('setUserInfo', res.data)
           this.$router.push('/home')
         } else {
