@@ -30,7 +30,7 @@ export default {
         username: 'admin',
         password: '123456'
       },
-      isShow: true,
+      isShow: false,
       rules: {
         username: [
           { required: true, message: '请输入用户名', trigger: 'blur'},
@@ -41,7 +41,6 @@ export default {
           { min: 5, max: 8, message: '长度在 5 到 8 个字符', trigger: 'blur' }
         ]
       }
-
     }
   },
   methods: {
@@ -50,19 +49,22 @@ export default {
         if (valid) {
           this.isShow = true
         } else {
-
+          return
         }
       })
     },
     success () {
-      this.$axios.post('login', this.formData).then((res) => {
-        const {data, meta} = res.data
-        if (meta.status === 200) {
+      this.$axios.post('user/login?username='+this.formData.username+'&'+"password="+this.formData.password
+      
+      ).then((res) => {
+        const {data, code, msg} = res.data
+        if (code === 200) {
           this.$message({
-            message: meta.msg,
+            message: msg,
             type: 'success'
           })
-          localStorage.setItem('token', data.token)
+          debugger
+          localStorage.setItem('token', data)
           this.$store.commit('setUserInfo', res.data)
           this.$router.push('/home')
         } else {
@@ -74,7 +76,9 @@ export default {
 
     }
   },
-  components: {}
+  components: {
+    Vcode
+  }
 }
 </script>
 

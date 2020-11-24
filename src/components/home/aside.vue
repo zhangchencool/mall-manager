@@ -1,46 +1,58 @@
 <template>
+  <div class="menu-container">
   <el-menu
   class="el-menu-demo"
-  active-text-color="#ffd04b"
+  :default-active="defaultActive"
   unique-opened= "true"
   router
   ref="kzMenu"
   >
-    <el-submenu :index="item.order" v-for="(item, index) in menusData" :key="index">
-      <template slot="title">{{item.authName}}</template>
-      <el-menu-item :index="items.path" v-for="(items, index) in item.children" :key="index">{{items.authName}}</el-menu-item>
+  <el-submenu :index="item.orderNum+ ''" v-for="(item, index) in menusData" :key="index">
+    <template slot="title">
+      <i class="el-icon-location"></i>
+      <span>{{item.menuName}}</span>
+    </template>
+    <el-menu-item-group v-for="(item1, index) in item.children" :key="index" v-if="item1.children.length === 0">
+      <el-menu-item :index="item1.url">
+        <i>1</i>
+        <span>{{item1.menuName}}</span></el-menu-item>
+    </el-menu-item-group>
+    <el-submenu :index="item1.url" v-else >
+      <template slot="title">{{item1.menuName}}</template>
+      <el-menu-item :index="item2.url" v-for="(item2, index) in item1.children" :key="index">
+        <i></i>
+        <span>{{item2.menuName}}</span></el-menu-item>
     </el-submenu>
+  </el-submenu>
   </el-menu>
+  </div>
 </template>
 
 <script>
 export default {
   data () {
     return {
-      menusData: [],
-      color: '#ffd04b'
+      color: '#ffd04b',
     }
   },
   created () {
     this.getMenusroles()
   },
+  props:{
+    menusData: {
+      type: Object,
+      default: []
+    },
+    defaultActive: {
+      type: String,
+      default: ''
+    }
+  },
   components: {
 
   },
   methods: {
-    getMenusroles () {
-      this.$axios
-        .get('menus')
-        .then((res) => {
-          const {data, meta} = res.data
-          if (meta.status === 200) {
-            this.menusData = data
-          }
-        })
-        .finally(() => {
-          this.loading = false
-        })
-    },
+    
     handleOpen () {
 
     },
@@ -49,14 +61,27 @@ export default {
     }
   },
   watch: {
-    $route (route) {
-      let paths = this.$route.path
-      this.$refs.kzMenu.activedIndex = path
-    }
+    $route () {
+      this.setCurrentRoute()
+      // this.$refs.kzMenu.activedIndex = path
+    }, 
   }
 }
 </script>
 
-<style>
-
+<style lang="scss" scoped>
+.menu-container{
+  height: 100%;
+  background-color: antiquewhite;
+  >>> .el-menu{
+    height: 100%;
+    border-left: 4px solid #ffffff;
+  }
+  >>> .el-menu-item {
+      &.is-active {
+       background-color: #99a9bf;
+       color: #ffffff;
+     }
+    }
+}
 </style>
