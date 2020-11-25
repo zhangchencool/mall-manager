@@ -25,7 +25,7 @@ const router = new Router({
     },
     {
       path: '/home',
-      name: '首页',
+      name: '欢迎',
       component: Home,
       redirect: '/welcome',
       children: [

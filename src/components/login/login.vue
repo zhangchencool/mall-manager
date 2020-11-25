@@ -33,12 +33,12 @@ export default {
       isShow: false,
       rules: {
         username: [
-          { required: true, message: '请输入用户名', trigger: 'blur'},
-          { min: 5, max: 8, message: '长度在 5 到 8 个字符', trigger: 'blur' }
+          {required: true, message: '请输入用户名', trigger: 'blur'},
+          {min: 5, max: 8, message: '长度在 5 到 8 个字符', trigger: 'blur'}
         ],
         password: [
-          { required: true, message: '请输入密码', trigger: 'blur'},
-          { min: 5, max: 8, message: '长度在 5 到 8 个字符', trigger: 'blur' }
+          {required: true, message: '请输入密码', trigger: 'blur'},
+          {min: 5, max: 8, message: '长度在 5 到 8 个字符', trigger: 'blur'}
         ]
       }
     }
@@ -68,7 +68,7 @@ export default {
           this.$store.commit('setUserInfo', res.data)
           this.$router.push('/home')
         } else {
-          this.$message.error(meta.msg)
+          this.$message.error(msg)
         }
       })
     },

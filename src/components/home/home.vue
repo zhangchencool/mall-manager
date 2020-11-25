@@ -34,7 +34,7 @@ export default {
       this.$axios
         .get('user/findMenu')
         .then((res) => {
-          const {data, msg, code} = res.data
+          const {data, code} = res.data
           if (code === 200) {
             this.menusData = data
           }
@@ -70,13 +70,17 @@ export default {
 <style lang="scss">
 .container{
     height: 100%;
+    min-width: 1440px;
 
     .header{
-        background-color: #ffffff;
+        background-color: #fff;
     }
     .aside{
         background-color: #ffffff;
         height: 100%;
+    }
+    .el-main{
+      background-color: #f4f8fc;
     }
 }
 

@@ -1,13 +1,13 @@
 <template>
-    <el-row>
+    <el-row type="flex" class="row-bg" justify="space-between">
         <el-col :span="4"><div class="grid-content bg-purple">
         </div></el-col>
         <el-col :span="14"><div class="grid-content bg-purple-light middle">
         </div></el-col>
         <el-col :span="6"><div class="grid-content bg-purple height-middle">
             <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect"
-            background-color="#a0cbd1"
-            text-color='#fff'
+            background-color="#fff"
+            text-color='#000'
             active-text-color='#fff'
             >
                 <el-submenu index="1">
@@ -43,15 +43,19 @@ export default {
 }
 </script>
 
-<style>
-.middle{
-    text-align: center;
-
-}
-.height-middle{
-
-    display: flex;
-    justify-content: flex-end;
-}
+<style lang="scss" scoped>
+  .row-bg{
+    border-bottom: 1px solid #e6e6e6;
+  }
+  .middle{
+      text-align: center;
+  }
+  .height-middle{
+      display: flex;
+      justify-content: flex-end;
+      >>> .el-menu.el-menu--horizontal {
+      border-bottom: none
+  }
+  }
 
 </style>

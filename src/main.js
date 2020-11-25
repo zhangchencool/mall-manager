@@ -10,6 +10,7 @@ import 'element-ui/lib/theme-chalk/index.css'
 import '@/assets/css/reset.scss'
 import moment from 'moment'
 import store from './store'
+import echarts from 'echarts'
 
 Vue.config.productionTip = false
 
@@ -17,6 +18,7 @@ Vue.use(ElementUI)
 Vue.use(Axios)
 Vue.use(breadcrumb)
 Vue.use(moment)
+Vue.prototype.$echarts = echarts
 
 // 注册全局过滤器处理时间格式
 Vue.filter('format', (v) => {

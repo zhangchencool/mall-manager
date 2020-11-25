@@ -40,8 +40,8 @@ export default {
   },
   props: {
     menusData: {
-      type: Object,
-      default: []
+      type: Array,
+      default: null
     },
     defaultActive: {
       type: String,
@@ -84,8 +84,15 @@ export default {
        color: #ffffff;
      }
      }
-  >>> .el-submenu.is-open .el-submenu__title {
-      background-color: aquamarine;
+  >>> .el-submenu{
+      &.is-opened{
+        background-color: #99a9bf;
+        .el-submenu__title{
+        }
+      }
+  }
+  >>> .el-menu-item-group__title {
+      padding: 0;
   }
 }
 </style>
