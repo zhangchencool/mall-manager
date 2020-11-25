@@ -45,7 +45,7 @@ export default {
     },
     setCurrentRoute () {
       this.defaultActive = this.$route.path
-       //关键   通过他就可以监听到当前路由状态并激活当前菜单
+      // 关键   通过他就可以监听到当前路由状态并激活当前菜单
     }
   },
   beforeCreate () {
@@ -54,7 +54,7 @@ export default {
       this.$router.push('login')
     }
   },
-  created() {
+  created () {
     this.getMenusroles()
     this.setCurrentRoute()
   },
@@ -63,7 +63,7 @@ export default {
       this.setCurrentRoute()
       // this.$refs.kzMenu.activedIndex = path
     }
-  },
+  }
 }
 </script>
 

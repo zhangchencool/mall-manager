@@ -32,13 +32,13 @@
 export default {
   data () {
     return {
-      color: '#ffd04b',
+      color: '#ffd04b'
     }
   },
   created () {
     this.getMenusroles()
   },
-  props:{
+  props: {
     menusData: {
       type: Object,
       default: []
@@ -52,7 +52,7 @@ export default {
 
   },
   methods: {
-    
+
     handleOpen () {
 
     },
@@ -64,7 +64,7 @@ export default {
     $route () {
       this.setCurrentRoute()
       // this.$refs.kzMenu.activedIndex = path
-    }, 
+    }
   }
 }
 </script>

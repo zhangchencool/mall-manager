@@ -49,13 +49,13 @@ export default {
         if (valid) {
           this.isShow = true
         } else {
-          return
+
         }
       })
     },
     success () {
-      this.$axios.post('user/login?username='+this.formData.username+'&'+"password="+this.formData.password
-      
+      this.$axios.post('user/login?username=' + this.formData.username + '&' + 'password=' + this.formData.password
+
       ).then((res) => {
         const {data, code, msg} = res.data
         if (code === 200) {
