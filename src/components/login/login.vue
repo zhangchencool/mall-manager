@@ -73,7 +73,7 @@ export default {
       })
     },
     close () {
-
+      this.isShow = false
     }
   },
   components: {

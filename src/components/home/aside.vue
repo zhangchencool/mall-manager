@@ -75,13 +75,17 @@ export default {
   background-color: antiquewhite;
   >>> .el-menu{
     height: 100%;
-    border-left: 4px solid #ffffff;
   }
   >>> .el-menu-item {
       &.is-active {
-       background-color: #99a9bf;
+       border-left: 4px solid #409EFF;
+       padding-left: 36px !important;
+       background-color: #99a9bf ;
        color: #ffffff;
      }
-    }
+     }
+  >>> .el-submenu.is-open .el-submenu__title {
+      background-color: aquamarine;
+  }
 }
 </style>
