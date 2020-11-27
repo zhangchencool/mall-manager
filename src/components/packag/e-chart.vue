@@ -1,5 +1,5 @@
 <template>
-<div id="echart" style="{height: 400px;}"></div>
+<div id="echart" :style="{height: '400px'}"></div>
 </template>
 
 <script>
@@ -13,12 +13,11 @@ export default {
     }
   },
   created () {
-    this.initechart()
+
   },
   methods: {
     initechart (opt) {
-      const chartObj = this.$echarts.init(document.getElementById(this.echart))
-
+      const chartObj = this.$echarts.init(document.getElementById('echart'))
       const option = {
         title: {
           text: '柱状图动画延迟'
@@ -72,7 +71,7 @@ export default {
     }
   },
   mounted () {
-
+    this.initechart()
   },
   components: {
 

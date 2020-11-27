@@ -1,9 +1,8 @@
 <template>
-    <el-breadcrumb separator-class="el-icon-arrow-right">
+    <el-breadcrumb separator-class="el-icon-arrow-right" class="breadcrumb">
         <el-breadcrumb-item
         v-for='item in $route.matched' :key="item.path" :to="{path: item.path}"
         >{{item.name}}</el-breadcrumb-item>
-
       </el-breadcrumb>
 </template>
 
@@ -20,6 +19,8 @@ export default {
 }
 </script>
 
-<style>
-
+<style lang="scss" scoped>
+.breadcrumb {
+  margin-bottom: 30px;
+}
 </style>
