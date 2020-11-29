@@ -101,7 +101,7 @@ export default {
 <style lang="scss" scoped>
 .welcome-container{
   .userinfo-card{
-    padding-top: 30px;
+
     padding-right: 30px;
     .el-card{
       height: 230px;
@@ -116,7 +116,6 @@ export default {
     }
   }
   .swiper-card{
-    padding-top: 30px;
   }
   .quickentry-card{
     padding-top: 30px;
