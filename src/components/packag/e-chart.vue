@@ -1,9 +1,8 @@
 <template>
-<div id="echart" style="{height: 400px;}"></div>
+<div id="echart" :style="{height: '400px', width: '100%'}"></div>
 </template>
 
 <script>
-
 export default {
   data () {
     return {
@@ -13,12 +12,12 @@ export default {
     }
   },
   created () {
-    this.initechart()
+    
   },
   methods: {
-    initechart (opt) {
-      const chartObj = this.$echarts.init(document.getElementById(this.echart))
-
+    initechart () {
+      const chartObj = this.$echarts.init(document.getElementById('echart'))
+      console.log(document.getElementById('echart'));
       const option = {
         title: {
           text: '柱状图动画延迟'
@@ -72,7 +71,7 @@ export default {
     }
   },
   mounted () {
-
+    this.initechart()
   },
   components: {
 
