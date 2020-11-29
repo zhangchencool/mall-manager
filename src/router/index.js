@@ -12,6 +12,8 @@ import menuManager from '@/components/systemManager/menuManager/menuManager.vue'
 import manangerRole from '@/components/systemManager/manangerRole/manangerRole.vue'
 import managerMsg from '@/components/systemManager/managerMsg/managerMsg.vue'
 import managerDepartment from '@/components/systemManager/managerDepartment/managerDepartment.vue'
+import publishStocks from '@/components/businessManagement/publishStocks/publishStocks.vue'
+import addStocks from '@/components/businessManagement/addStocks/addStocks.vue'
 
 Vue.use(Router)
 
@@ -37,7 +39,9 @@ const router = new Router({
         {path: '/roles', name: '角色管理', component: manangerRole},
         {path: '/notices', name: '公告管理', component: managerMsg},
         {path: '/roles', name: '角色列表', component: Right},
-        {path: '/permission', name: '角色配置', component: Permission}
+        {path: '/permission', name: '角色配置', component: Permission},
+        {path: '/OutStocks/publishStocks', name: '物资发放', component: publishStocks},
+        {path: '/inStocks/addStocks', name: '物资入库', component: addStocks}
       ]
     }
   ]

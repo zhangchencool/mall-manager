@@ -107,7 +107,7 @@ export default {
     }
   },
   components: {
-
+    Table
   },
   methods: {
     getMsgData () {

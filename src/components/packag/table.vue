@@ -37,7 +37,7 @@
       </el-table-column>
     </template>
     </el-table>
-  </template>
+</template>
 
 <script>
 export default {
