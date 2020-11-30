@@ -38,7 +38,7 @@
             inactive-color="#ff4949">
             </el-switch>
           </template>
-        </my-table> 
+        </my-table>
       </el-row>
     </el-card>
   </el-row>
@@ -52,7 +52,7 @@
     <el-col :span="8">
       <el-form-item prop="username">
         <el-input v-model="userAddForm.username"></el-input>
-      </el-form-item>   
+      </el-form-item>
     </el-col>
     <el-col :span="16">
       <el-form-item label="部门" prop="departmentId" required>
@@ -63,7 +63,7 @@
       </el-form-item>
     </el-col>
   </el-form-item>
-  
+
   <el-form-item label="昵称" required>
     <el-col :span="8">
       <el-form-item prop="nickname">
@@ -100,7 +100,7 @@ width="720px"
 class="transfer-dia"
 >
 <div class="transfer-box">
- <el-transfer v-model="value" :data="roledata" 
+ <el-transfer v-model="value" :data="roledata"
  :titles="['未拥有','已拥有']"
  :button-texts="['到左边', '到右边']">
 </el-transfer>
@@ -122,9 +122,9 @@ export default {
       searchform: {
         pageNum: 1,
         pageSize: 6,
-        username: "",
-        sex: "",
-        nickname: ""     
+        username: '',
+        sex: '',
+        nickname: ''
       },
       tableHeadConfig: [
         {
@@ -147,7 +147,7 @@ export default {
         {
           label: '生日',
           field: 'birth'
-         
+
         },
         {
           label: '邮箱',
@@ -167,27 +167,27 @@ export default {
       tableLoadData: [],
       userDialogVisible: false,
       userAddForm: {
-        username: "",
-        nickname: "",
-        password: "123",
-        email: "",
-        phoneNumber: "",
-        sex: "帅哥",
-        birth: ""
+        username: '',
+        nickname: '',
+        password: '123',
+        email: '',
+        phoneNumber: '',
+        sex: '帅哥',
+        birth: ''
       },
       addRules: {
         username: [
-          {required: true, message: "请输入用户名", trigger: "blur"},
-          { min: 3, max: 10, message: "长度在 3 到 10 个字符", trigger: "blur" }
+          {required: true, message: '请输入用户名', trigger: 'blur'},
+          { min: 3, max: 10, message: '长度在 3 到 10 个字符', trigger: 'blur' }
         ],
         departmentId: [
-          {required: true, message: "请选择部门", trigger: "blur"}
+          {required: true, message: '请选择部门', trigger: 'blur'}
         ],
         nickname: [
-          {required: true, message: "请输入昵称", trigger: "blur"},
+          {required: true, message: '请输入昵称', trigger: 'blur'}
         ],
         sex: [
-          {required: true, message: "请输入性别", trigger: "blur"},
+          {required: true, message: '请输入性别', trigger: 'blur'}
         ]
       },
       roleDialogVisible: false,
@@ -198,15 +198,15 @@ export default {
   components: {
     myTable
   },
-  created() {
+  created () {
     this.getUserData()
   },
   filters: {
     sex (sex) {
       if (sex === 1) {
-        return "帅哥"
+        return '帅哥'
       } else {
-        return "美女"
+        return '美女'
       }
     }
   },
@@ -229,7 +229,7 @@ export default {
     },
     userEdit (id) {
       this.$axios
-        .get('user/edit/'+ id)
+        .get('user/edit/' + id)
         .then((res) => {
           const {data, code} = res.data
           if (code === 200) {
@@ -237,11 +237,10 @@ export default {
             this.userDialogVisible = true
           }
         })
-      
     },
     roleEdit (id) {
       this.$axios
-        .get('user/'+ id +  "/roles")
+        .get('user/' + id + '/roles')
         .then((res) => {
           const {data, code} = res.data
           if (code === 200) {
@@ -253,41 +252,41 @@ export default {
     },
     submitUserInfo () {
       this.$refs.userAddForm.validate(valid => {
-        if(!valid) {
-          return
+        if (!valid) {
+
         } else {
-           this.$axios
+          this.$axios
             .post('user/add', this.userAddForm)
             .then((res) => {
-              const {data, code} = res.data
+              const {code} = res.data
               if (code === 200) {
                 this.$message({
-                message: '修改成功',
-                type: 'success'
-                });
+                  message: '修改成功',
+                  type: 'success'
+                })
                 this.userDialogVisible = false
-               }
+              }
             })
         }
-      })    
+      })
     },
     submiRoleInfo () {
 
     },
     del (id) {
       this.$axios
-            .delete('user/delete/'+ id)
-            .then((res) => {
-              const {data, code} = res.data
-              if (code === 200) {
-                this.$message({
-                message: '删除成功',
-                type: 'success'
-                });
-                this.userDialogVisible = false
-                this.getUserData()
-               }
+        .delete('user/delete/' + id)
+        .then((res) => {
+          const {code} = res.data
+          if (code === 200) {
+            this.$message({
+              message: '删除成功',
+              type: 'success'
             })
+            this.userDialogVisible = false
+            this.getUserData()
+          }
+        })
     }
   }
 }
