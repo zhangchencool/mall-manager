@@ -24,7 +24,7 @@
         >
         <template slot-scope="scope">
             <slot :name = item.slotName :data="scope"></slot>
-          </template>
+        </template>
       </el-table-column>
       <el-table-column
       v-else

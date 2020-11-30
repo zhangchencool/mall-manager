@@ -62,18 +62,18 @@
 export default {
   components: {},
   props: {},
-  data() {
+  data () {
     return {
-      radio: "1",
+      radio: '1',
       form: {}
-    };
+    }
   },
   watch: {},
   computed: {},
   methods: {},
-  created() {},
-  mounted() {}
-};
+  created () {},
+  mounted () {}
+}
 </script>
 <style lang="scss" scoped>
 </style>
