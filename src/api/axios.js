@@ -56,5 +56,20 @@ export default {
         resolve(res)
       })
     })
+  },
+  put (url, data, headers, type) {
+    return new Promise((resolve, reject) => {
+      axios({
+        method: 'put',
+        url,
+        data,
+        headers: headers
+      // cancelToken: new CancelToken ((c) => {
+      //   cancel = c
+      // })
+      }).then(res => {
+        resolve(res)
+      })
+    })
   }
 }

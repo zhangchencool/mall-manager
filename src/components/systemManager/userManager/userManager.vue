@@ -24,9 +24,9 @@
       <el-row>
         <my-table :tableDataConfig = 'tableLoadData' :tableHeadConfig = 'tableHeadConfig'>
           <template v-slot:operation = "slotData">
-            <el-button type="primary" icon="el-icon-edit" circle @click= "userEdit(slotData.data.row.id)"></el-button>
-            <el-button type="danger" icon="el-icon-delete" circle @click= "del(slotData.data.row.id)"></el-button>
-            <el-button type="warning" icon="el-icon-edit-outline" circle @click= "roleEdit(slotData.data.row.id)"></el-button>
+            <el-button type="primary" icon="el-icon-edit" circle @click= "handleuserEdit(slotData.data.row.id)"></el-button>
+            <el-button type="danger" icon="el-icon-delete" circle @click= "handledel(slotData.data.row.id)"></el-button>
+            <el-button type="warning" icon="el-icon-edit-outline" circle @click= "handleroleEdit(slotData.data.row.id)"></el-button>
           </template>
           <template v-slot:sex = "slotData">
             <el-tag>{{slotData.data.row.sex | sex}}</el-tag>
@@ -212,7 +212,7 @@ export default {
   },
   methods: {
     handleSearch () {
-
+      this.getUserData()
     },
     handleReset () {
       this.searchform = {}
@@ -227,7 +227,7 @@ export default {
           }
         })
     },
-    userEdit (id) {
+    handleuserEdit (id) {
       this.$axios
         .get('user/edit/' + id)
         .then((res) => {
@@ -238,7 +238,7 @@ export default {
           }
         })
     },
-    roleEdit (id) {
+    handleroleEdit (id) {
       this.$axios
         .get('user/' + id + '/roles')
         .then((res) => {
@@ -253,8 +253,9 @@ export default {
     submitUserInfo () {
       this.$refs.userAddForm.validate(valid => {
         if (!valid) {
-
+          return
         } else {
+          debugger
           this.$axios
             .post('user/add', this.userAddForm)
             .then((res) => {
@@ -273,20 +274,31 @@ export default {
     submiRoleInfo () {
 
     },
-    del (id) {
-      this.$axios
-        .delete('user/delete/' + id)
-        .then((res) => {
-          const {code} = res.data
-          if (code === 200) {
-            this.$message({
-              message: '删除成功',
-              type: 'success'
+    handledel (id) {
+      this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning'
+        }).then(() => {
+          this.$axios
+            .delete('user/delete/' + id)
+            .then((res) => {
+              const {code} = res.data
+              if (code === 200) {
+                this.userDialogVisible = false
+                this.getUserData()
+              }
             })
-            this.userDialogVisible = false
-            this.getUserData()
-          }
-        })
+              this.$message({
+                type: 'success',
+                message: '删除成功!'
+              });
+        }).catch(() => {
+          this.$message({
+            type: 'info',
+            message: '已取消删除'
+          });          
+        });
     }
   }
 }
