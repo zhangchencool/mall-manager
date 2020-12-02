@@ -4,7 +4,9 @@
       <breadcrumb></breadcrumb>
     </el-row>
     <el-row>
-      <el-card>1</el-card>
+      <el-card>
+        <el-button>发布公告</el-button>
+      </el-card>
     </el-row>
  </div>
 </template>

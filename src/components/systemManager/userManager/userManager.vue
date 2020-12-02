@@ -253,7 +253,7 @@ export default {
     submitUserInfo () {
       this.$refs.userAddForm.validate(valid => {
         if (!valid) {
-          return
+
         } else {
           debugger
           this.$axios
@@ -276,29 +276,29 @@ export default {
     },
     handledel (id) {
       this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
-          confirmButtonText: '确定',
-          cancelButtonText: '取消',
-          type: 'warning'
-        }).then(() => {
-          this.$axios
-            .delete('user/delete/' + id)
-            .then((res) => {
-              const {code} = res.data
-              if (code === 200) {
-                this.userDialogVisible = false
-                this.getUserData()
-              }
-            })
-              this.$message({
-                type: 'success',
-                message: '删除成功!'
-              });
-        }).catch(() => {
-          this.$message({
-            type: 'info',
-            message: '已取消删除'
-          });          
-        });
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        this.$axios
+          .delete('user/delete/' + id)
+          .then((res) => {
+            const {code} = res.data
+            if (code === 200) {
+              this.userDialogVisible = false
+              this.getUserData()
+            }
+          })
+        this.$message({
+          type: 'success',
+          message: '删除成功!'
+        })
+      }).catch(() => {
+        this.$message({
+          type: 'info',
+          message: '已取消删除'
+        })
+      })
     }
   }
 }
@@ -308,11 +308,9 @@ export default {
 .userManager-container{
   width: 100%;
   height: 100%;
-  span{
-    margin-left: 20px;
-  }
   .search-ipt{
     width: 200px;
+    margin: 20px;
   }
 }
 </style>

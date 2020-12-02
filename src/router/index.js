@@ -2,7 +2,6 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Login from '@/components/login/login.vue'
 import Home from '@/components/home/home.vue'
-import ceshiUsers from '@/components/users/users.vue'
 import Right from '@/components/right/right.vue'
 import Permission from '@/components/permission/permission.vue'
 import Welcome from '@/components/systemManager/welcome/welcome.vue'
@@ -14,6 +13,11 @@ import managerMsg from '@/components/systemManager/managerMsg/managerMsg.vue'
 import managerDepartment from '@/components/systemManager/managerDepartment/managerDepartment.vue'
 import publishStocks from '@/components/businessManagement/publishStocks/publishStocks.vue'
 import addStocks from '@/components/businessManagement/addStocks/addStocks.vue'
+import inStorage from '@/components/businessManagement/materialsManagement/inStorage.vue'
+import material from '@/components/businessManagement/materialsManagement/material.vue'
+import materialInventory from '@/components/businessManagement/materialsManagement/materialInventory.vue'
+import materialRecord from '@/components/businessManagement/materialsManagement/materialRecord.vue'
+import materialType from '@/components/businessManagement/materialsManagement/materialType.vue'
 
 Vue.use(Router)
 
@@ -49,7 +53,15 @@ const router = new Router({
           component: publishStocks
         },
         { path: '/inStocks/addStocks', name: '物资入库', component: addStocks },
-        { path: '/ceshiUsers', name: '物资入库', component: ceshiUsers }
+        { path: '/inStocks', name: '入库记录', component: inStorage },
+        { path: '/products', name: '物资资料', component: material },
+        {
+          path: '/productCategorys',
+          name: '物资类别',
+          component: materialType
+        },
+        { path: '/outStocks', name: '发放记录', component: materialRecord },
+        { path: '/stocks', name: '物资库存', component: materialInventory }
       ]
     }
   ]

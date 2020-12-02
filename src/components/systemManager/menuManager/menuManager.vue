@@ -133,18 +133,18 @@ export default {
       isEditdialog: false,
       isAdddialog: false,
       editForm: {
-        parentId: "",
-        menuName: "",
-        url: "",
-        type: "",
-        orderNum: "",
-        disabled: "",
-        open: "",
-        perms: ""
+        parentId: '',
+        menuName: '',
+        url: '',
+        type: '',
+        orderNum: '',
+        disabled: '',
+        open: '',
+        perms: ''
       },
       rules: {
         menuName: [
-          { required: true, message: "节点名称不能为空", trigger: "blur" },
+          { required: true, message: '节点名称不能为空', trigger: 'blur' }
         ]
       }
     }
@@ -169,7 +169,7 @@ export default {
     handleEdit (data) {
       this.isEditdialog = true
       this.$axios
-        .get("menu/edit/" + data.id)
+        .get('menu/edit/' + data.id)
         .then((res) => {
           const {data, code} = res.data
           if (code === 200) {
@@ -181,8 +181,8 @@ export default {
       this.$refs.editForm.validate(valid => {
         if (valid) {
           this.$axios
-            .put("menu/update/" + this.editForm.id,
-            this.editForm)
+            .put('menu/update/' + this.editForm.id,
+              this.editForm)
             .then((res) => {
               const {data, code} = res.data
               if (code === 200) {
@@ -195,8 +195,8 @@ export default {
       this.editForm = {}
       this.isAdddialog = true
     },
-    handleDel(data) {
-      
+    handleDel (data) {
+
     }
   }
 }

@@ -1,5 +1,5 @@
 <template>
- <div class="manangerRole-container">
+ <div class="managerDepartment-container">
     <el-row class="breadcrumb-content">
       <breadcrumb></breadcrumb>
     </el-row>
@@ -36,27 +36,38 @@ import Table from '@/components/packag/table.vue'
 export default {
   data () {
     return {
+      tableDataConfig: [],
+      searchform: {
+        pageNum: 1,
+        pageSize: 7,
+        name: ''
+      },
       tableHeadConfig: [
         {
           label: 'ID',
           field: 'id'
         },
         {
-          label: '角色名',
-          field: 'roleName'
+          label: '办公电话',
+          field: 'phone'
+        },
+        {
+          label: '部门名',
+          field: 'name'
+        },
+        {
+          label: '人数',
+          columnType: 'slot',
+          slotName: 'total'
         },
         {
           label: '创建时间',
           field: 'createTime'
-        },
-        {
-          label: '状态',
-          field: 'status'
 
         },
         {
-          label: '备注',
-          field: 'remark'
+          label: '修改时间',
+          field: 'modifiedTime'
         },
         {
           label: '地址',
@@ -67,18 +78,32 @@ export default {
           columnType: 'slot',
           slotName: 'operation'
         }
-      ],
-      tableDataConfig: []
+      ]
     }
   },
   components: {
     Table
+  },
+  methods: {
+    getDepartmentData () {
+      this.$axios
+        .get('department/findDepartmentList', this.searchform)
+        .then((res) => {
+          const {data, code} = res.data
+          if (code === 200) {
+            this.tableDataConfig = data.rows
+          }
+        })
+    }
+  },
+  created () {
+    this.getDepartmentData()
   }
 }
 </script>
 
 <style lang="scss" scoped>
-.manangerRole-container{
+.managerDepartment-container{
     width: 100%;
     height: 100%;
     span{
